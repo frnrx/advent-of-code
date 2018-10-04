@@ -11,6 +11,7 @@ let contents = fs.readFileSync('./file.txt', (err, data) => {
 contents = contents.toString();
 
 let floor = 0;
+let verify = true;
 
 for (let j = 0; j < contents.length; j++) {
     if (contents.substr(j, 1) === '(') {
@@ -19,10 +20,11 @@ for (let j = 0; j < contents.length; j++) {
     else if (contents.substr(j, 1) === ')') {
         floor--;
     }
+    if (verify)
     if (floor === -1){
-        console.log(j+1)
+        verify = false;
+        console.log('Santa entered the basement at the position', j+1)
     }
   }
 
-//   console.log(floor);
-
+  console.log('and ended up at the', floor, 'floor.');
